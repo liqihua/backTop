@@ -1,0 +1,83 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" type="text/html;charset=utf-8"/>
+	<script type="text/javascript">
+		function showInfo(){
+			alert("网页可见区域高： document.body.clientHeight:  "+document.body.clientHeight+
+			"\n网页可见区域高(包括边线的宽);： document.body.offsetHeight:  "+document.body.offsetHeight+
+			"\n网页正文全文高： document.body.scrollHeight:  "+document.body.scrollHeight+
+			"\n网页被卷去的高： document.body.scrollTop:  "+document.body.scrollTop+
+			"\n网页正文部分上： window.screenTop:  "+window.screenTop+
+			"\n屏幕可用工作区高度： window.screen.availHeight:  "+window.screen.availHeight+
+			"\n屏幕分辨率的高： window.screen.height:  "+window.screen.height);
+			
+		}
+		//window.onscroll = showInfo;
+		
+		//网页加载完执行
+		window.onload = function(){
+			var btn = document.getElementById("btn");
+			
+			
+			//网页滚动事件，如果被卷去的高度大于等于可视区域高度，显示返回顶部元素，相反，隐藏 
+			window.onscroll = function(){
+				var screenH = window.screen.availHeight;	//可视区域高度
+				var backTop = document.body.scrollTop;		//被卷去的高度
+				if(backTop >= screenH){
+					btn.style.display = "block";
+				}else if(backTop <= screenH){
+					btn.style.display = "none";
+				}
+				
+			}
+			
+			
+			//点击返回顶部事件
+			btn.onclick = function(){
+				timer = setInterval(function(){
+					var top = document.body.scrollTop;
+					var back = top/5;		//为了越滚越慢，每次滚动值变小
+					document.body.scrollTop = top - back;
+					if(top == 0){
+						clearInterval(timer);
+					}
+				},50);
+			}
+		}
+		
+	</script>
+	<style>
+		.r{
+			text-decoration:none;
+			position:fixed;
+			right:50px;
+			bottom:30px;
+			display:none;
+		}
+	</style>
+</head>
+<body>
+
+<header>
+<h1>Welcome to my homepage</h1>
+<p>My name is Donald Duck</p>
+</header>
+
+<p>The rest of my home page...</p>
+
+<a id="btn" class="r" href="javascript:;">返<br>回<br>顶<br>部</a>
+
+<br>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+
+</body>
+</html>
